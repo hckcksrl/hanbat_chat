@@ -9,7 +9,6 @@ verify_ssl = true
 django = "*"
 mysqlclient = "*"
 djangorestframework = "*"
-zappa = "*"
 psycopg2 = "*"
 
 [requires]

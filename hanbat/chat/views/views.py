@@ -10,21 +10,25 @@ from hanbat.chat.interactors.interactor import \
 
 class StaffView(APIView):
     def post(self, request: Request) -> Response:
-        # menu = StaffGetMenuInteractor().execute(**request.data)
-        print(request.data)
-        return Response(
-            status=status.HTTP_200_OK,
-            data={
+        a = {'day': '금'}
+        menu = StaffGetMenuInteractor().execute(**a)
+        data = {
                 "version": "2.0",
                 "data": {
-                    "msg":"HI",
-                    "name":"Ryan",
-                    "position":"Senior Managing Director"
+                    "location": '교직원 식당'
                 }
-            }
+        }
+        times = ['breakfast', 'lunch', 'dinner']
+        foods = ['bf_menu', 'lunch_menbu', 'dinner_menu']
+        for food, time, i in zip(foods, times, menu):
+            data['data'][time] = i.time
+            data['data'][food] = i.menu
+        return Response(
+            status=status.HTTP_200_OK,
+            data=data
         )
 
-    def get(self):
+    def get(self, request):
         return Response(status=status.HTTP_200_OK)
 
 
