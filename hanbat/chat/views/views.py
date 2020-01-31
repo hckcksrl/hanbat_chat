@@ -10,8 +10,9 @@ from hanbat.chat.interactors.interactor import \
 
 class StaffView(APIView):
     def post(self, request: Request) -> Response:
-        # menu = StaffGetMenuInteractor().execute(**request.data)
-        print(request.data)
+        a = {"day":"목"}
+        menu = StaffGetMenuInteractor().execute(**a)
+        print(menu)
         return Response(
             status=status.HTTP_200_OK,
             data={
@@ -24,7 +25,7 @@ class StaffView(APIView):
             }
         )
 
-    def get(self):
+    def get(self, request):
         return Response(status=status.HTTP_200_OK)
 
 
