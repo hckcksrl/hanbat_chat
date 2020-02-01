@@ -2,6 +2,7 @@ from hanbat.chat.repositories.repository import \
     StudentRepository, \
     DomitoryRepository, \
     StaffRepository
+import datetime
 
 
 class StudentInteractor:
@@ -31,4 +32,9 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
 
 class StaffGetMenuInteractor(StaffInteractor):
     def execute(self, **kwargs):
+        if not kwargs:
+            t = ['월', '화', '수', '목', '금', '토', '일']
+            r = datetime.datetime.today().weekday()
+            day = t[r]
+            return self.repository.get_menu(day=day)
         return self.repository.get_menu(**kwargs)
