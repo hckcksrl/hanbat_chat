@@ -32,9 +32,13 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
 
 class StaffGetMenuInteractor(StaffInteractor):
     def execute(self, **kwargs):
-        if not kwargs:
-            t = ['월', '화', '수', '목', '금', '토', '일']
-            r = datetime.datetime.today().weekday()
-            day = t[r]
+        day = kwargs['userRequest']['utterance']
+        day_list = ['월', '화', '수', '목', '금']
+        if day in day_list:
             return self.repository.get_menu(day=day)
-        return self.repository.get_menu(**kwargs)
+
+        today_id = datetime.datetime.today().weekday()
+        if today_id > 4 :
+            return None
+        today = day_list[today_id]
+        return self.repository.get_menu(day=today)
