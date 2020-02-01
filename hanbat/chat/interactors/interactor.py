@@ -38,7 +38,8 @@ class StaffGetMenuInteractor(StaffInteractor):
             return self.repository.get_menu(day=day)
 
         today_id = datetime.datetime.today().weekday()
-        if today_id > 4 :
+        if today_id > 4:
             return None
         today = day_list[today_id]
+        print(today)
         return self.repository.get_menu(day=today)
