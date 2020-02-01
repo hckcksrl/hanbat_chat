@@ -16,18 +16,21 @@ class StaffView(APIView):
             data=menu
         )
 
-    def get(self, request):
-        return Response(status=status.HTTP_200_OK)
-
 
 class DomitoryView(APIView):
     def post(self, request: Request) -> Response:
-        menu = DomitoryGetMenuInteractor().execute(**request.data)
-        return Response(status=status.HTTP_200_OK)
+        menu = DomitoryGetMenuInteractor().execute(request.data)
+        return Response(
+            status=status.HTTP_200_OK,
+            data=menu
+        )
 
 
 class StudentView(APIView):
     def post(self, request: Request) -> Response:
-        menu = StudentGetMenuInteractor().execute(**request.data)
-        return Response(status=status.HTTP_200_OK)
+        menu = StudentGetMenuInteractor().execute(request.data)
+        return Response(
+            status=status.HTTP_200_OK,
+            data=menu
+        )
 

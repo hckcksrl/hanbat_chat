@@ -42,8 +42,13 @@ class StaffInteractor:
 
 
 class StudentGetMenuInteractor(StudentInteractor):
-    def execute(self, **kwargs):
-        return self.repository.get_menu(**kwargs)
+    def execute(self, data: dict):
+        result = self.result
+        kinds = data['userRequest']['utterance']
+        menus = self.repository.get_menu(kinds=kinds)
+        for menu in menus:
+            result['data']['menu'] = result['data']['menu'] + f'{menu.menu}\t{menu.price}\n\n'
+        return result
 
 
 class DomitoryGetMenuInteractor(DomitoryInteractor):
@@ -60,7 +65,8 @@ class StaffGetMenuInteractor(StaffInteractor):
         if day in day_list:
             menus = self.repository.get_menu(day=day)
             for menu in menus:
-                result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+                if menu.menu:
+                    result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
             return result
 
         today_id = datetime.datetime.today().weekday()
@@ -70,7 +76,7 @@ class StaffGetMenuInteractor(StaffInteractor):
             return result
 
         today = day_list[today_id]
-        menus = self.repository.get_menu(day=day)
+        menus = self.repository.get_menu(day=today)
         for menu in menus:
             result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
         return result
