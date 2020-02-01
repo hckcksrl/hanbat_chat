@@ -31,8 +31,8 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
 
 
 class StaffGetMenuInteractor(StaffInteractor):
-    def execute(self, **kwargs):
-        day = kwargs['userRequest']['utterance']
+    def execute(self, data: dict):
+        day = data['userRequest']['utterance']
         day_list = ['월', '화', '수', '목', '금']
         if day in day_list:
             return self.repository.get_menu(day=day)
