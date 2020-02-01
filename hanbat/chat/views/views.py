@@ -10,7 +10,6 @@ from hanbat.chat.interactors.interactor import \
 
 class StaffView(APIView):
     def post(self, request: Request) -> Response:
-        print(request.data)
         menu = StaffGetMenuInteractor().execute(request.data)
         data = {
                 "version": "2.0",
