@@ -11,7 +11,7 @@ class StudentInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '학생식당',
+                "location": '(밥)학생식당',
                 "menu": ""
             }
         }
@@ -23,7 +23,7 @@ class DomitoryInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '기숙사식당',
+                "location": '(밥)기숙사식당',
                 "menu": ""
             }
         }
@@ -35,7 +35,7 @@ class StaffInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '교직원식당',
+                "location": '(밥)교직원식당',
                 "menu": ""
             }
         }
@@ -48,7 +48,7 @@ class StudentGetMenuInteractor(StudentInteractor):
         menus = self.repository.get_menu(kinds=kinds)
 
         for menu in menus:
-            result['data']['menu'] = result['data']['menu'] + f'{menu.menu}\t{menu.price}\n\n'
+            result['data']['menu'] = result['data']['menu'] + f'*{menu.menu}\t{menu.price}\n\n'
 
         return result
 
@@ -65,7 +65,7 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
             for menu in menus:
 
                 if menu.menu:
-                    result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
 
             return result
 
@@ -74,7 +74,7 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
         menus = self.repository.get_menu(day=today)
 
         for menu in menus:
-            result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+            result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
 
         return result
 
@@ -91,9 +91,9 @@ class StaffGetMenuInteractor(StaffInteractor):
             for menu in menus:
 
                 if menu.menu:
-                    result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
                 else:
-                    result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n\n'
 
             return result
 
@@ -109,8 +109,8 @@ class StaffGetMenuInteractor(StaffInteractor):
 
         for menu in menus:
             if menu.menu:
-                result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+                result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
             else:
-                result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n\n'
+                result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n\n'
 
         return result
