@@ -92,6 +92,8 @@ class StaffGetMenuInteractor(StaffInteractor):
 
                 if menu.menu:
                     result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+                else:
+                    result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n\n'
 
             return result
 
@@ -106,6 +108,9 @@ class StaffGetMenuInteractor(StaffInteractor):
         menus = self.repository.get_menu(day=today)
 
         for menu in menus:
-            result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+            if menu.menu:
+                result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n{menu.menu}\n\n'
+            else:
+                result['data']['menu'] = result['data']['menu'] + f'{menu.time}\n\n'
 
         return result
