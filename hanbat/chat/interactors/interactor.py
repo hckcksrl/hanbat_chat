@@ -65,7 +65,7 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
             for menu in menus:
 
                 if menu.menu:
-                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n*{menu.menu}\n\n'
 
             return result
 
@@ -74,7 +74,7 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
         menus = self.repository.get_menu(day=today)
 
         for menu in menus:
-            result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
+            result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n*{menu.menu}\n\n'
 
         return result
 
@@ -91,9 +91,9 @@ class StaffGetMenuInteractor(StaffInteractor):
             for menu in menus:
 
                 if menu.menu:
-                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n*{menu.menu}\n\n'
                 else:
-                    result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n\n'
+                    result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n\n'
 
             return result
 
@@ -109,8 +109,8 @@ class StaffGetMenuInteractor(StaffInteractor):
 
         for menu in menus:
             if menu.menu:
-                result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n{menu.menu}\n\n'
+                result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n*{menu.menu}\n\n'
             else:
-                result['data']['menu'] = result['data']['menu'] + f'*{menu.time}\n\n'
+                result['data']['menu'] = result['data']['menu'] + f'▶{menu.time}\n\n'
 
         return result
