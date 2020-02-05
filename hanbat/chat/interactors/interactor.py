@@ -11,7 +11,7 @@ class StudentInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '(밥)학생식당',
+                "location": '▶학생식당',
                 "menu": ""
             }
         }
@@ -23,7 +23,7 @@ class DomitoryInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '(밥)기숙사식당',
+                "location": '▶기숙사식당',
                 "menu": ""
             }
         }
@@ -35,7 +35,7 @@ class StaffInteractor:
         self.result = {
             "version": "2.0",
             "data": {
-                "location": '(밥)교직원식당',
+                "location": '▶교직원식당',
                 "menu": ""
             }
         }
