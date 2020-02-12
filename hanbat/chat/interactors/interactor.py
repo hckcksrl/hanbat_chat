@@ -69,7 +69,10 @@ class DomitoryGetMenuInteractor(DomitoryInteractor):
 
             return result
 
-        today_id = datetime.datetime.today().weekday()
+        today = datetime.datetime.now() + datetime.timedelta(hours=9)
+
+        today_id = today.weekday()
+
         today = day_list[today_id]
         menus = self.repository.get_menu(day=today)
 
@@ -97,14 +100,17 @@ class StaffGetMenuInteractor(StaffInteractor):
 
             return result
 
-        today_id = datetime.datetime.today().weekday()
+        today = datetime.datetime.now() + datetime.timedelta(hours=9)
+
+        today_id = today.weekday()
+
+        today = day_list[today_id]
 
         if today_id > 4:
             result['data']['menu'] = '운영 안함\n\n'
 
             return result
 
-        today = day_list[today_id]
         menus = self.repository.get_menu(day=today)
 
         for menu in menus:
